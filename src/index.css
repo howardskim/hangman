@@ -1,9 +1,8 @@
 .image-container{
-  background-color: lightblue;
+  /* background-color: lightblue; */
   text-align: center;
 }
 .letter-container{
-  margin-top: 7%;
   display: flex;
   /* background-color: orange; */
   justify-content: center;
@@ -12,6 +11,8 @@
   height: 13rem;
   max-width: 500px;
   margin: 0 auto;
+  margin-top: 7%;
+
 }
 .letter-square{
   margin-left: 0.2rem;
@@ -20,6 +21,21 @@
   border-radius: 10px;
 
 }
-.letter-square > div{
-  /* border-radius: 10px; */
+.guess-container{
+  display: flex;
+  margin: 0 auto;
+  text-align: center;
+  background-color: yellow;
+  justify-content: center;
+}
+.guess-box{
+  margin-right: 1em;
+  /* width: 3em; */
+}
+.guess-box p{
+  font-size: 3.5rem;
+}
+img{
+  width: 320px;
+  height: 320px;
 }
