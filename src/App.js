@@ -1,26 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react'
+import ImageContainer from './components/ImageContainer';
+import LetterContainer from "./components/LetterContainer";
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Hello
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Testing
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  render() {
+    let alphabet = 'abcdefghijklmnopqrstuvwxyz';
+    return (
+      <div>
+        <h1>Hangmon</h1>
+        <ImageContainer />
+        <div className="letter-container">
+          { alphabet.split("").map((letter, index) => {
+            return <LetterContainer key={letter} letter={letter} />;
+          }) }
+        </div>
+      </div>
+    );
+  }
 }
+
 
 export default App;
