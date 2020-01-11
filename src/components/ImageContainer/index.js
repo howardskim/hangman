@@ -16,11 +16,7 @@ export default class ImageContainer extends Component {
         }
     }
     handleReset = () => {
-        this.setState({
-            imageSource: pokeball,
-            gameStarted: false,
-            reset: false
-        })
+        this.props.handleReset();
     }
     componentDidMount = () => {
 
