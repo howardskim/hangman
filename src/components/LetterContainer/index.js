@@ -4,9 +4,12 @@ export default class LetterContainer extends Component {
     componentDidMount(){
 
     }
+    handleClick = () => {
+       this.props.handleGuessClick(this.props.letter)
+    }
     render() {
         return (
-            <button className="letter-square">
+            <button disabled={this.props.disabled} onClick={this.handleClick} className="letter-square">
                 <div>{this.props.letter}</div>
             </button>
         );

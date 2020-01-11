@@ -25,12 +25,13 @@
   display: flex;
   margin: 0 auto;
   text-align: center;
-  background-color: yellow;
+  /* background-color: yellow; */
   justify-content: center;
 }
 .guess-box{
   margin-right: 1em;
   /* width: 3em; */
+  /* height: 7em; */
 }
 .guess-box p{
   font-size: 3.5rem;
