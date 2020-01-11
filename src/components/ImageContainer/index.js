@@ -49,16 +49,17 @@ export default class ImageContainer extends Component {
     }
     render() {
         console.log('image container state ', this.state);
+        let { gameStarted } = this.props;
         return (
             <div className="image-container">
-                <img onClick={!this.state.gameStarted ? this.handleClick : ''} src={this.props.image} />
+                <img onClick={!gameStarted ? this.handleClick : ''} src={this.props.image} />
                 <div className="guess-container">
-                {!this.state.gameStarted ? (
+                {!gameStarted ? (
                     <div className="guess-box">
                         <p>Click To Begin</p>
                     </div>
                 ) : '' }
-                {this.state.gameStarted && this.state.guessArray && this.state.guessArray.length > 0 ? this.state.guessArray.map((guess) => {
+                {gameStarted && this.state.guessArray && this.state.guessArray.length > 0 ? this.state.guessArray.map((guess) => {
                     return (
                         <div className="guess-box">
                             <p>{guess}</p>

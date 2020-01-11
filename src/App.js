@@ -103,7 +103,7 @@ class App extends Component {
     return (
       <div>
         <h1>Hangmon</h1>
-        <ImageContainer handleReset={this.handleReset} image={img} getDataFromImageContainer={this.getDataFromImageContainer} />
+        <ImageContainer gameStarted={this.state.gameStarted} handleReset={this.handleReset} image={img} getDataFromImageContainer={this.getDataFromImageContainer} />
         <div className="letter-container">
           {alphabet.split("").map((letter, index) => {
             return <LetterContainer disabled={!this.state.gameStarted || this.state.lettersGuessed.includes(letter) || this.state.gameOver ? true : false} handleGuessClick={this.handleGuessClick} key={letter} letter={letter} />;
