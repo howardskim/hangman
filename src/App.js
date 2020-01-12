@@ -7,7 +7,6 @@ import pokeball from "./images/pokeball.png";
 import lost from "./images/lost.jpg";
 import won from "./images/won.jpg";
 import title from './images/title.png';
-
 import './App.css';
 
 class App extends Component {
@@ -19,7 +18,8 @@ class App extends Component {
       attempts: 5,
       lettersGuessed: [],
       guessArray: [],
-      gameOver: false
+      gameOver: false,
+      gameLost: false
     }
   }
   componentDidMount = () => {
@@ -51,39 +51,34 @@ class App extends Component {
   }
   handleGuessClick = (guess) => {
     let { name, guessArray, lettersGuessed, attempts, gameStarted } = this.state;
+    if(lettersGuessed.includes(guess)){
+      return;
+    } else {
+      this.setState({
+        lettersGuessed: [...this.state.lettersGuessed, guess]
+      })
+    }
     if (!name.includes(guess)) {
       this.setState({
         attempts: (this.state.attempts -= 1)
       });
-    }
-    if (attempts <= 0 && gameStarted || (gameStarted && attempts > 0 && !guessArray.includes("_"))) {
-      return;
-    } 
-    if(attempts === 1){
-      for(let i = 0; i < name.length; i++){
-        guessArray[i] = name[i]
-      }
-    }
-
-
-    if(lettersGuessed.includes(guess)){return;}
+    };
     let matchedIndex = [];
-    for( let i = 0; i < name.length; i++){
+    for (let i = 0; i < name.length; i++) {
       let letter = name[i];
-      if(letter === guess){
+      if (letter === guess) {
         matchedIndex.push(i);
       }
     }
-    for(let index of matchedIndex){
-      guessArray[index] = guess
+    for (let index of matchedIndex) {
+      guessArray[index] = guess;
     };
     this.setState({
-      guessArray,
-      lettersGuessed: [...this.state.lettersGuessed, guess]
-    });
+      guessArray
+    })
   };
 
-
+  
   handleReset = () => {
     this.setState({
         gameStarted: false,
@@ -92,16 +87,16 @@ class App extends Component {
         gameOver: false,
         guessArray: [],
         image: pokeball,
-        imageSource: pokeball
-
+        imageSource: pokeball,
+        gameLost: false
     });
   }
   render() {
-    let { attempts, guessArray, gameStarted, image } = this.state;
+    let { attempts, guessArray, gameStarted, image, gameLost } = this.state;
     let img;
     if(attempts <= 0 && gameStarted){
       img = lost
-    } else if ( gameStarted && attempts > 0 && !guessArray.includes('_')){
+    } else if (gameStarted && attempts > 0 && !guessArray.includes('_')){
       img = won
     } else {
       img = image
@@ -117,12 +112,15 @@ class App extends Component {
           handleReset={this.handleReset}
           image={img}
           getDataFromImageContainer={this.getDataFromImageContainer}
+          guessArray={attempts <= 0 ? this.state.name.split('') : this.state.guessArray }
         />
         <div className="letter-container">
           {alphabet.split("").map((letter, index) => {
             return (
               <LetterContainer
                 disabled={
+                  this.state.guessArray.join('') === this.state.name ||
+                  this.state.attempts <= 0 ||
                   !this.state.gameStarted ||
                   this.state.lettersGuessed.includes(letter) ||
                   this.state.gameOver

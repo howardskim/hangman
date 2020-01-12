@@ -28,7 +28,7 @@
   margin-right: 1em;
 }
 .guess-box p{
-  font-size: 3.5rem;
+  font-size: 1.5rem;
 }
 #pokeball{
   width: 320px;
@@ -44,6 +44,35 @@
   max-width: 500px;
 }
 .title-container{
-  text-align: center;
   margin: 1%;
+  margin: 0 auto;
+  text-align: center;
+  margin-top: 1%;
+  max-width: 800px;
+}
+.title-container > img {
+  width: 100%
+}
+.progress {
+  font-size: 1rem !important;
+  height: 2rem !important;
+}
+
+@media only screen and (max-width: 600px) {
+  .progress-container{
+    margin-top: 10%;
+    /* position: absolute;
+    bottom: 5%;
+    width: 100%; */
+  }
+  .letter-square{
+    margin-bottom: 1%;
+  }
+  #pokeball{
+    width: 250px;
+    height: 250px;
+  }
+  .title-container{
+    margin-top: 5%;
+  }
 }

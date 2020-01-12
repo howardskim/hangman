@@ -13,17 +13,12 @@ export default class ImageContainer extends Component {
             imageSource: pokeball,
             loading: false,
             gameStarted: false,
-            reset: false
+            reset: false,
+            guessArray: this.props.guessArray
         }
     }
     handleReset = () => {
         this.props.handleReset();
-    }
-    componentDidMount = () => {
-
-    }
-    componentDidUpdate(prevProps, prevState){
-
     }
     handleClick = () => {
         this.setState({loading: true})
@@ -60,7 +55,7 @@ export default class ImageContainer extends Component {
                 ) : '' }
                 <img id="pokeball" onClick={!gameStarted ? this.handleClick : ''} src={this.props.image} />
                 <div className="guess-container">
-                {gameStarted && this.state.guessArray && this.state.guessArray.length > 0 ? this.state.guessArray.map((guess) => {
+                {gameStarted && this.props.guessArray && this.props.guessArray.length > 0 ? this.props.guessArray.map((guess) => {
                     return (
                         <div className="guess-box">
                             <p>{guess}</p>
