@@ -1,9 +1,6 @@
 import React, { Component } from 'react'
 
 export default class LetterContainer extends Component {
-    componentDidMount(){
-
-    }
     handleClick = () => {
        this.props.handleGuessClick(this.props.letter)
     }

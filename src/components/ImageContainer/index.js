@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Button } from 'react-bootstrap';
 import pokeball from '../../images/pokeball.png'
 import lost from '../../images/lost.jpg'
 import won from '../../images/won.jpg'
@@ -48,17 +49,17 @@ export default class ImageContainer extends Component {
         })
     }
     render() {
-        console.log('image container state ', this.state);
         let { gameStarted } = this.props;
+        let margin = {marginTop: '1%'}
         return (
             <div className="image-container">
-                <img onClick={!gameStarted ? this.handleClick : ''} src={this.props.image} />
-                <div className="guess-container">
                 {!gameStarted ? (
                     <div className="guess-box">
                         <p>Click To Begin</p>
                     </div>
                 ) : '' }
+                <img id="pokeball" onClick={!gameStarted ? this.handleClick : ''} src={this.props.image} />
+                <div className="guess-container">
                 {gameStarted && this.state.guessArray && this.state.guessArray.length > 0 ? this.state.guessArray.map((guess) => {
                     return (
                         <div className="guess-box">
@@ -67,7 +68,7 @@ export default class ImageContainer extends Component {
                     )
                 }) : ''}
                 </div>
-                <button onClick={this.handleReset}>Reset </button>
+                <Button style={margin} size="sm" onClick={this.handleReset}>Reset </Button>
             </div>
         )
     }

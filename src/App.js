@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
+import { Button } from 'react-bootstrap';
 import ImageContainer from './components/ImageContainer';
 import LetterContainer from "./components/LetterContainer";
+import Progessbar from './components/Progessbar';
 import pokeball from "./images/pokeball.png";
 import lost from "./images/lost.jpg";
 import won from "./images/won.jpg";
+import title from './images/title.png';
 
 import './App.css';
 
@@ -12,6 +15,7 @@ class App extends Component {
     super(props);
     this.state = {
       gameStarted: false,
+      lives: 5,
       attempts: 5,
       lettersGuessed: [],
       guessArray: [],
@@ -24,7 +28,6 @@ class App extends Component {
     })
   }
   getDataFromImageContainer = (...args) => {
-    console.log('args ', args);
     let { imageSource, loading, gameStarted, name, image, guessArray, reset } = args[0]
     if(reset){
       this.setState({
@@ -48,16 +51,19 @@ class App extends Component {
   }
   handleGuessClick = (guess) => {
     let { name, guessArray, lettersGuessed, attempts, gameStarted } = this.state;
+    if (!name.includes(guess)) {
+      this.setState({
+        attempts: (this.state.attempts -= 1)
+      });
+    }
     if (attempts <= 0 && gameStarted || (gameStarted && attempts > 0 && !guessArray.includes("_"))) {
-      console.log('wtf')
       return;
     } 
-    if(!name.includes(guess)){
-      this.setState({
-        attempts: this.state.attempts -=1
-      })
+    if(attempts === 1){
+      for(let i = 0; i < name.length; i++){
+        guessArray[i] = name[i]
+      }
     }
-
 
 
     if(lettersGuessed.includes(guess)){return;}
@@ -75,7 +81,9 @@ class App extends Component {
       guessArray,
       lettersGuessed: [...this.state.lettersGuessed, guess]
     });
-  }
+  };
+
+
   handleReset = () => {
     this.setState({
         gameStarted: false,
@@ -89,7 +97,6 @@ class App extends Component {
     });
   }
   render() {
-    console.log('app state ', this.state);
     let { attempts, guessArray, gameStarted, image } = this.state;
     let img;
     if(attempts <= 0 && gameStarted){
@@ -102,13 +109,34 @@ class App extends Component {
     let alphabet = 'abcdefghijklmnopqrstuvwxyz';
     return (
       <div>
-        <h1>Hangmon</h1>
-        <ImageContainer gameStarted={this.state.gameStarted} handleReset={this.handleReset} image={img} getDataFromImageContainer={this.getDataFromImageContainer} />
+        <div className="title-container">
+          <img src={title} />
+        </div>
+        <ImageContainer
+          gameStarted={this.state.gameStarted}
+          handleReset={this.handleReset}
+          image={img}
+          getDataFromImageContainer={this.getDataFromImageContainer}
+        />
         <div className="letter-container">
           {alphabet.split("").map((letter, index) => {
-            return <LetterContainer disabled={!this.state.gameStarted || this.state.lettersGuessed.includes(letter) || this.state.gameOver ? true : false} handleGuessClick={this.handleGuessClick} key={letter} letter={letter} />;
+            return (
+              <LetterContainer
+                disabled={
+                  !this.state.gameStarted ||
+                  this.state.lettersGuessed.includes(letter) ||
+                  this.state.gameOver
+                    ? true
+                    : false
+                }
+                handleGuessClick={this.handleGuessClick}
+                key={letter}
+                letter={letter}
+              />
+            );
           })}
         </div>
+        <Progessbar lives={this.state.lives} attempts={this.state.attempts} />
       </div>
     );
   }
