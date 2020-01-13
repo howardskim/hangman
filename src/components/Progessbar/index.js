@@ -13,9 +13,11 @@ export default class Progessbar extends Component {
         return (
             <div className="progress-container">
                 <ProgressBar 
+                    className={attempts === 5 ? 'progress-bar-black' : ''}
+                    variant={attempts <= 2 ? 'danger' : 'primary'}
                     animated
                     now={percentage} 
-                    label={`${attempts} attempts remaining`}
+                    label={`${attempts} chances remaining`}
                 />
             </div>
         )

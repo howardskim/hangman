@@ -103,7 +103,7 @@ class App extends Component {
     }
     let alphabet = 'abcdefghijklmnopqrstuvwxyz';
     return (
-      <div>
+      <div className="outer-container">
         <div className="title-container">
           <img src={title} />
         </div>

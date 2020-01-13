@@ -1,3 +1,13 @@
+* {
+  box-sizing: border-box;
+}
+
+body{
+  background: linear-gradient(to bottom, #60bde4, #10020200);
+  height: 100vh;
+  overflow: hidden;
+}
+
 .image-container{
   text-align: center;
 }
@@ -34,7 +44,7 @@
   width: 320px;
   height: 320px;
 }
-#pokeball:hover{
+#pokeball:hover, button:hover{
   cursor: pointer;
 }
 
@@ -56,6 +66,10 @@
 .progress {
   font-size: 1rem !important;
   height: 2rem !important;
+  padding: 1%;
+}
+.progress-bar-black > div{
+  color: black !important;
 }
 
 @media only screen and (max-width: 600px) {

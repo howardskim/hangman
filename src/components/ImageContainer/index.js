@@ -50,7 +50,7 @@ export default class ImageContainer extends Component {
             <div className="image-container">
                 {!gameStarted ? (
                     <div className="guess-box">
-                        <p>Click To Begin</p>
+                        <p>Open a Pokémon to begin!</p>
                     </div>
                 ) : '' }
                 <img id="pokeball" onClick={!gameStarted ? this.handleClick : ''} src={this.props.image} />
