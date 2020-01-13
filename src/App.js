@@ -114,6 +114,8 @@ class App extends Component {
           getDataFromImageContainer={this.getDataFromImageContainer}
           guessArray={attempts <= 0 ? this.state.name.split('') : this.state.guessArray }
         />
+        <Progessbar lives={this.state.lives} attempts={this.state.attempts} />
+
         <div className="letter-container">
           {alphabet.split("").map((letter, index) => {
             return (
@@ -134,7 +136,7 @@ class App extends Component {
             );
           })}
         </div>
-        <Progessbar lives={this.state.lives} attempts={this.state.attempts} />
+        {/* <Progessbar lives={this.state.lives} attempts={this.state.attempts} /> */}
       </div>
     );
   }
