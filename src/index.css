@@ -1,11 +1,14 @@
 * {
   box-sizing: border-box;
 }
+html{
+  height: 100%;
+}
 
 body{
   background: linear-gradient(to bottom, #60bde4, #10020200);
-  height: 100vh;
-  overflow: hidden;
+  /* height: 100%; */
+  /* overflow: hidden; */
 }
 
 .image-container{
@@ -87,6 +90,6 @@ body{
     height: 250px;
   }
   .title-container{
-    margin-top: 5%;
+    /* margin-top: 5%; */
   }
 }
